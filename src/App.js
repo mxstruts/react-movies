@@ -1,6 +1,12 @@
 import React from 'react';
 import { BiCartAlt } from 'react-icons/bi';
 import { CgProfile } from 'react-icons/cg';
+import { BiSearch } from 'react-icons/bi';
+import { AiFillHeart } from 'react-icons/ai';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { MdBookmarkBorder } from 'react-icons/md';
+import { MdBookmark } from 'react-icons/md';
+import { MdBookmarks } from 'react-icons/md';
 
 function App() {
   return (
@@ -24,9 +30,20 @@ function App() {
         </ul>
       </header>
       <div className="content p-40">
-        <h1 className="mb-40">Movies</h1>
+        <div className="d-flex align-center justify-between mb-40">
+          <h1>Movies</h1>
+          <div className="search-block">
+            <BiSearch className="bisearch1" />
+            <input placeholder="Search..." />
+          </div>
+        </div>
+
         <div className="d-flex">
           <div className="card">
+            <div className="favorite">
+              <AiOutlineHeart className="heart" />
+            </div>
+
             <img width={133} height={112} src="img/tintin.jpg" alt="Cherk" />
             <h5>Movie About Love and Nature Cartoon</h5>
             <div className="d-flex justify-between align-center">
@@ -40,6 +57,9 @@ function App() {
             </div>
           </div>
           <div className="card">
+            <div className="favorite">
+              <AiOutlineHeart className="heart" />
+            </div>
             <img width={133} height={112} src="img/oblivion.jpg" alt="Cherk" />
             <h5>Movie About Love and Nature Cartoon</h5>
             <div className="d-flex justify-between align-center">
@@ -53,6 +73,9 @@ function App() {
             </div>
           </div>
           <div className="card">
+            <div className="favorite">
+              <AiOutlineHeart className="heart" />
+            </div>
             <img width={133} height={112} src="img/war.jpg" alt="Cherk" />
             <h5>Movie About Love and Nature Cartoon</h5>
             <div className="d-flex justify-between align-center">
@@ -66,6 +89,9 @@ function App() {
             </div>
           </div>
           <div className="card">
+            <div className="favorite">
+              <AiOutlineHeart className="heart" />
+            </div>
             <img width={133} height={112} src="img/jumanji.jpg" alt="Cherk" />
             <h5>Movie About Love and Nature Cartoon</h5>
             <div className="d-flex justify-between align-center">
