@@ -1,14 +1,32 @@
 import React from 'react';
-import { AiFillHeart } from 'react-icons/ai';
-import { AiOutlineHeart } from 'react-icons/ai';
-import { MdBookmarkBorder } from 'react-icons/md';
-import { MdBookmark } from 'react-icons/md';
-import { MdBookmarks } from 'react-icons/md';
 import { BiSearch } from 'react-icons/bi';
 
 import Card from './components/Card';
 import Header from './components/Header';
 import Drawer from './components/Drawer';
+
+const arr = [
+  {
+    title: 'Movie about black panther and marvel indistry',
+    price: 12999,
+    imgUrl: 'img/jumanji.jpg',
+  },
+  {
+    title: 'Film with dark motivation',
+    price: 13200,
+    imgUrl: 'img/tintin.jpg',
+  },
+  {
+    title: 'Hollywood poema about winter and crazy people ',
+    price: 15600,
+    imgUrl: 'img/oblivion.jpg',
+  },
+  {
+    title: 'Black darknes film oscars movie',
+    price: 18100,
+    imgUrl: 'img/war.jpg',
+  },
+];
 
 function App() {
   return (
@@ -25,10 +43,15 @@ function App() {
         </div>
 
         <div className="d-flex">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {arr.map((obj) => (
+            <Card
+              title={obj.title}
+              price={obj.price}
+              imgUrl={obj.imgUrl}
+              onFavorite={() => console.log('Added to bookmark')}
+              onPlus={() => console.log('Pressed Plus')}
+            />
+          ))}
         </div>
       </div>
     </div>

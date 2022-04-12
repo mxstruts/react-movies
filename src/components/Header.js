@@ -1,3 +1,4 @@
+import React from 'react';
 import { BiCartAlt } from 'react-icons/bi';
 import { CgProfile } from 'react-icons/cg';
 
