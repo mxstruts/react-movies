@@ -2,7 +2,7 @@ import React from 'react';
 import { BiCartAlt } from 'react-icons/bi';
 import { CgProfile } from 'react-icons/cg';
 
-function Header() {
+function Header(props) {
   return (
     <header className="d-flex justify-between align-center p-40">
       <div className="d-flex align-center">
@@ -13,12 +13,12 @@ function Header() {
         </div>
       </div>
       <ul className="d-flex">
-        <li className="mr-30">
-          <BiCartAlt className="Img" width={18} height={18} />
+        <li className="mr-30" onClick={props.onClickCart}>
+          <BiCartAlt className="Img cu-p" width={18} height={18} />
           <span>12 999 usd.</span>
         </li>
         <li>
-          <CgProfile className="Img" width={18} height={18} />
+          <CgProfile className="Img cu-p" width={18} height={18} />
         </li>
       </ul>
     </header>

@@ -5,11 +5,12 @@ import { AiFillHeart } from 'react-icons/ai';
 import { BiMessageSquareAdd } from 'react-icons/bi'; //dobavit v korzinu
 import { BiMessageSquareCheck } from 'react-icons/bi'; //dobavleny v korzinu
 
-function Card(props) {
+function Card({ onFavorite, onPlus, title, imgUrl, price }) {
   const [isAdded, setIsAdded] = React.useState(false);
   const [isLiked, setIsLiked] = React.useState(false);
 
   const onClickPlus = () => {
+    onPlus({ title, imgUrl, price });
     setIsAdded(!isAdded);
   };
 
@@ -19,7 +20,7 @@ function Card(props) {
 
   return (
     <div className={styles.card}>
-      <div className={styles.favorite} onClick={props.onFavorite}>
+      <div className={styles.favorite} onClick={onFavorite}>
         {isLiked ? (
           <AiFillHeart className="heart" onClick={onClickLike} />
         ) : (
@@ -27,12 +28,12 @@ function Card(props) {
         )}
       </div>
 
-      <img width={133} height={112} src={props.imgUrl} alt="Cherk" />
-      <h5>{props.title}</h5>
+      <img width={133} height={112} src={imgUrl} alt="movie-cover" />
+      <h5>{title}</h5>
       <div className="d-flex justify-between align-center">
         <div className="d-flex flex-column">
           <span>Price:</span>
-          <b>{props.price}</b>
+          <b>{price}</b>
         </div>
         {isAdded ? (
           <BiMessageSquareCheck className={styles.plus} onClick={onClickPlus} size={28} />
