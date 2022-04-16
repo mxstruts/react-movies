@@ -1,11 +1,9 @@
 import React from 'react';
 import styles from './Card.module.scss';
-import { AiOutlineHeart } from 'react-icons/ai'; //pustoe serdce
-import { AiFillHeart } from 'react-icons/ai';
-import { BiMessageSquareAdd } from 'react-icons/bi'; //dobavit v korzinu
-import { BiMessageSquareCheck } from 'react-icons/bi'; //dobavleny v korzinu
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'; //pustoe serdce
+import { BiMessageSquareCheck, BiMessageSquareAdd } from 'react-icons/bi'; //dobavleny v korzinu  //dobavit v korzinu
 
-function Card({ onFavorite, onPlus, title, imgUrl, price }) {
+function Card({ onFavorite, onPlus, onMinus, props, title, imgUrl, price }) {
   const [isAdded, setIsAdded] = React.useState(false);
   const [isLiked, setIsLiked] = React.useState(false);
 
