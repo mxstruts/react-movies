@@ -1,4 +1,4 @@
-import { MdOutlineCancel, MdCancelPresentation } from 'react-icons/md';
+import { MdOutlineCancel } from 'react-icons/md';
 import { IoClose } from 'react-icons/io5';
 import { BiRightArrowAlt } from 'react-icons/bi';
 import { AiOutlineDropbox } from 'react-icons/ai';

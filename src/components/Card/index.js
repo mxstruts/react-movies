@@ -13,12 +13,13 @@ function Card({ onFavorite, onPlus, onMinus, props, title, imgUrl, price }) {
   };
 
   const onClickLike = () => {
+    onFavorite({ title, imgUrl, price });
     setIsLiked(!isLiked);
   };
 
   return (
     <div className={styles.card}>
-      <div className={styles.favorite} onClick={onFavorite}>
+      <div className={styles.favorite}>
         {isLiked ? (
           <AiFillHeart className="heart" onClick={onClickLike} />
         ) : (

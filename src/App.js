@@ -1,18 +1,20 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import axios from 'axios';
 import CssBaseline from '@mui/material/CssBaseline';
-import { BiSearch } from 'react-icons/bi';
-import { MdOutlineCancel } from 'react-icons/md';
 
-import Card from './components/Card';
 import Header from './components/Header';
 import Drawer from './components/Drawer';
+import Home from './pages/Home';
+import Favorites from './pages/Favorites';
 
 function App() {
   const [items, setItems] = React.useState([]);
   const [cartItems, setCartItems] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState('');
   const [cartOpened, setCartOpened] = React.useState(false);
+  const [liked, setLiked] = React.useState([]);
 
   React.useEffect(() => {
     axios.get('https://6255054089f28cf72b63ae48.mockapi.io/items').then((res) => {
@@ -20,6 +22,9 @@ function App() {
     });
     axios.get('https://6255054089f28cf72b63ae48.mockapi.io/cart').then((res) => {
       setCartItems(res.data);
+    });
+    axios.get('https://6255054089f28cf72b63ae48.mockapi.io/Favorites').then((res) => {
+      setLiked(res.data);
     });
   }, []);
 
@@ -33,8 +38,13 @@ function App() {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const onChangeSeachInput = (event) => {
+  const onChangeSearchInput = (event) => {
     setSearchValue(event.target.value);
+  };
+
+  const onLiked = (obj) => {
+    axios.post('https://6255054089f28cf72b63ae48.mockapi.io/Favorites', obj);
+    setLiked((prev) => [...prev, obj]);
   };
 
   return (
@@ -43,38 +53,24 @@ function App() {
       {cartOpened && (
         <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem} />
       )}
-      <Header onClickCart={() => setCartOpened(true)} />
-      <div className="content p-40">
-        <div className="d-flex align-center justify-between mb-40">
-          <h1>{searchValue ? `Searching: "${searchValue}"` : 'Movies'}</h1>
-          <div className="search-block">
-            <BiSearch className="bisearch1" />
-            {searchValue && (
-              <MdOutlineCancel
-                onClick={() => setSearchValue('')}
-                className="clear cu-p"
-                alt="Clear"
-              />
-            )}
-            <input onChange={onChangeSeachInput} value={searchValue} placeholder="Search..." />
-          </div>
-        </div>
 
-        <div className="d-flex flex-wrap">
-          {items
-            .filter((item) => item.title.toLowerCase().includes(searchValue))
-            .map((item, index) => (
-              <Card
-                key={index}
-                title={item.title}
-                price={item.price}
-                imgUrl={item.imgUrl}
-                onFavorite={() => console.log('Added to bookmark')}
-                onPlus={(obj) => onAddToCart(obj)}
-              />
-            ))}
-        </div>
-      </div>
+      <Header onClickCart={() => setCartOpened(true)} />
+
+      <Route path="/" exact>
+        <Home
+          items={items}
+          cartItems={cartItems}
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+          onChangeSearchInput={onChangeSearchInput}
+          onLiked={onLiked}
+          onAddToCart={onAddToCart}
+        />
+      </Route>
+
+      <Route path="/favorites" exact>
+        <Favorites items={liked} />
+      </Route>
     </div>
   );
 }
