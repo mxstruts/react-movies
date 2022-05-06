@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+
 import { Route } from 'react-router-dom';
 import axios from 'axios';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -55,8 +55,7 @@ function App() {
       )}
 
       <Header onClickCart={() => setCartOpened(true)} />
-
-      <Route path="/" exact>
+      {/* <Route path="/" exact>
         <Home
           items={items}
           cartItems={cartItems}
@@ -66,8 +65,8 @@ function App() {
           onLiked={onLiked}
           onAddToCart={onAddToCart}
         />
-      </Route>
-
+      </Route> */}
+      <Home />
       <Route path="/favorites" exact>
         <Favorites items={liked} />
       </Route>
